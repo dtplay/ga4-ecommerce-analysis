@@ -1,0 +1,7 @@
+funnel_step,sessions,pct_prev,pct_start
+1. Sessions,360129,100.0,100.0
+2. Item views,77020,21.39,21.39
+3. Add to carts,15188,19.72,4.22
+4. Checkouts,11106,73.12,3.08
+5. Payment Info,6815,61.37,1.89
+6. Transactions,4848,71.14,1.35

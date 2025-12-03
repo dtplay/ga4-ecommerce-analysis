@@ -1,0 +1,144 @@
+CREATE TABLE ga4_ecommerce (
+    row_id SERIAL PRIMARY KEY,  -- Unique, auto-incrementing surrogate key for the row
+
+    -- Event-level columns (one row per event)
+    event_date TEXT,
+    event_timestamp BIGINT,
+    event_name TEXT,
+    event_previous_timestamp BIGINT,
+    event_value_in_usd DOUBLE PRECISION,
+    user_id TEXT,
+    user_pseudo_id TEXT,
+    event_bundle_sequence_id BIGINT,
+    event_server_timestamp_offset BIGINT,
+    stream_id TEXT,
+    platform TEXT,
+
+    -- Device fields (already flattened from GA4 device struct)
+    device_category TEXT,
+    device_is_limited_ad_tracking TEXT,
+    device_language TEXT,
+    device_mobile_brand_name TEXT,
+    device_mobile_marketing_name TEXT,
+    device_mobile_model_name TEXT,
+    device_mobile_os_hardware_model TEXT,
+    device_operating_system TEXT,
+    device_operating_system_version TEXT,
+    device_time_zone_offset_seconds BIGINT,
+    device_vendor_id TEXT,
+    device_web_info_browser TEXT,
+    device_web_info_browser_version TEXT,
+
+    -- Geo fields (flattened from GA4 geo struct)
+    geo_continent TEXT,
+    geo_sub_continent TEXT,
+    geo_country TEXT,
+    geo_region TEXT,
+    geo_metro TEXT,
+    geo_city TEXT,
+
+    -- App info (for app streams)
+    app_info_id TEXT,
+    app_info_firebase_app_id TEXT,
+    app_info_install_source TEXT,
+    app_info_version TEXT,
+
+    -- Privacy settings info
+    privacy_info_ads_storage TEXT,
+    privacy_info_analytics_storage TEXT,
+    privacy_info_uses_transient_token TEXT,
+
+    -- User lifetime value
+    user_ltv_revenue DOUBLE PRECISION,
+    user_ltv_currency TEXT,
+
+    -- Ecommerce summary fields (per event)
+    ecommerce_total_item_quantity DOUBLE PRECISION,
+    ecommerce_purchase_revenue DOUBLE PRECISION,
+    ecommerce_purchase_revenue_in_usd DOUBLE PRECISION,
+    ecommerce_refund_value DOUBLE PRECISION,
+    ecommerce_refund_value_in_usd DOUBLE PRECISION,
+    ecommerce_shipping_value DOUBLE PRECISION,
+    ecommerce_shipping_value_in_usd DOUBLE PRECISION,
+    ecommerce_tax_value DOUBLE PRECISION,
+    ecommerce_tax_value_in_usd DOUBLE PRECISION,
+    ecommerce_transaction_id TEXT,
+    ecommerce_unique_items DOUBLE PRECISION,
+    ecommerce_checkout_step DOUBLE PRECISION,
+
+    -- Traffic source / attribution fields
+    traffic_source_name TEXT,
+    traffic_source_medium TEXT,
+    traffic_source_source TEXT,
+    traffic_source_campaign TEXT,
+    traffic_source_campaign_id TEXT,
+    traffic_source_ad_content TEXT,
+    traffic_source_ad_group TEXT,
+
+    -- Publisher / ads-related data
+    publisher_ad_revenue_in_usd DOUBLE PRECISION,
+    publisher_ad_format TEXT,
+    publisher_ad_source_name TEXT,
+    publisher_ad_unit_id TEXT,
+
+    -- Event params we care about (pulled out of GA4 event_params)
+    event_params_page_location TEXT,
+    event_params_page_title TEXT,
+    event_params_page_referrer TEXT,
+    event_params_engagement_time_msec DOUBLE PRECISION,
+    event_params_session_engaged TEXT,
+    event_params_ga_session_id BIGINT,
+    event_params_ga_session_number DOUBLE PRECISION,
+    event_params_source TEXT,
+    event_params_medium TEXT,
+    event_params_campaign TEXT,
+
+    -- User properties (flattened from GA4 user_properties)
+    user_properties_user_id TEXT,
+    user_properties_first_open_time DOUBLE PRECISION,
+    user_properties_user_ltv DOUBLE PRECISION,
+    user_properties_user_creation_time DOUBLE PRECISION,
+    user_properties_user_type TEXT,
+
+    -- Item-level fields (one row per item per event in the flattened export)
+    items_item_id TEXT,
+    items_item_name TEXT,
+    items_item_brand TEXT,
+    items_item_category TEXT,
+    items_item_category2 TEXT,
+    items_item_category3 TEXT,
+    items_item_category4 TEXT,
+    items_item_category5 TEXT,
+    items_item_variant TEXT,
+    items_price DOUBLE PRECISION,
+    items_quantity DOUBLE PRECISION,
+    items_coupon TEXT,
+    items_affiliation TEXT,
+    items_location_id TEXT,
+    items_item_list_id TEXT,
+    items_item_list_name TEXT,
+    items_promotion_id TEXT,
+    items_promotion_name TEXT,
+    items_creative_name TEXT,
+    items_creative_slot TEXT
+);
+
+
+-- ---------------------------------------------------------
+-- Basic indexes for the usual filters / joins
+-- ---------------------------------------------------------
+
+CREATE INDEX idx_event_date ON ga4_ecommerce(event_date);
+CREATE INDEX idx_event_name ON ga4_ecommerce(event_name);
+CREATE INDEX idx_user_pseudo_id ON ga4_ecommerce(user_pseudo_id);
+CREATE INDEX idx_event_timestamp ON ga4_ecommerce(event_timestamp);
+
+
+-- ---------------------------------------------------------
+-- Some lightweight metadata so this table is self-explanatory
+-- ---------------------------------------------------------
+
+COMMENT ON TABLE ga4_ecommerce IS 'Flattened GA4 ecommerce/events table, loaded from BigQuery export.';
+COMMENT ON COLUMN ga4_ecommerce.event_timestamp IS 'Raw GA4 event timestamp in microseconds (UTC).';
+COMMENT ON COLUMN ga4_ecommerce.event_date IS 'Event date in YYYYMMDD format as provided by GA4.';
+COMMENT ON COLUMN ga4_ecommerce.user_pseudo_id IS 'GA4 anonymous user identifier (cookie-based / app instance).';

@@ -1,0 +1,13 @@
+source,medium,sessions,users,sessions_per_user,conversions,conversion_rate,revenue,pct_revenue,avg_revenue_per_conversion
+(data deleted),(data deleted),22233,17948,1.24,698,0.03,50089.0,13.82,71.76
+(data deleted),referral,3,3,1.0,0,0.0,,,
+(direct),(none),83459,75951,1.1,1079,0.01,79711.0,22.0,73.87
+<Other>,(data deleted),396,393,1.01,9,0.02,396.0,0.11,44.0
+<Other>,<Other>,52057,51037,1.02,506,0.01,35497.0,9.79,70.15
+<Other>,cpc,1,1,1.0,0,0.0,,,
+<Other>,organic,10163,10095,1.01,97,0.01,8220.0,2.27,84.74
+<Other>,referral,34672,32880,1.05,471,0.01,37037.0,10.22,78.63
+google,<Other>,1,1,1.0,0,0.0,,,
+google,cpc,15617,15527,1.01,153,0.01,9067.0,2.5,59.26
+google,organic,112678,103487,1.09,1250,0.01,95872.0,26.45,76.7
+shop.googlemerchandisestore.com,referral,28849,26065,1.11,585,0.02,46514.0,12.83,79.51

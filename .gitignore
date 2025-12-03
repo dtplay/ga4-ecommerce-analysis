@@ -1,0 +1,42 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+.env
+*.env
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE / editor stuff
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.idea/
+*.swp
+.DS_Store
+
+# Logs
+*.log
+
+# pytest / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Data files
+*.parquet
+
+# Google Credentials
+/*.json
