@@ -58,3 +58,21 @@ This repo is designed to be reproducible end‑to‑end, from raw GA4 events to 
    - If needed, update the data source paths so each table points to the corresponding CSV in `exports/`, then refresh the model.
 
 From there, use the dashboard pages (Traffic, Devices, Funnel, Revenue, Products, Customers) to drill into the same insights shown in the notebook, but in a more interactive way.
+
+
+## Environment & Dependencies
+
+See `requirements.txt` for all dependencies. Install with:
+
+```
+pip install -r requirements.txt
+```
+
+Then set up a `.env` file with your PostgreSQL credentials:
+
+```
+DB_USER=your_db_user
+DB_PASSWORD=your_db_password
+```
+
+**Note:** The original GA4 data was fetched from Google BigQuery. Pre-processed CSVs are included in `exports/` and can be used directly to explore the analysis without BigQuery access.
