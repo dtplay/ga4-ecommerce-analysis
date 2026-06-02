@@ -4,6 +4,8 @@ This project explores Google Merchandise Store GA4 e‑commerce data (Nov 2020 �
 
 **Tools:** PostgreSQL • Python • Power BI (Desktop 2.146)
 
+> ✨ **Live Interactive Report:** [Interact with the Power BI dashboard here](https://dtplay.github.io/ga4-ecommerce-analysis/) 🔗 (Right-click to open in a new tab)
+
 ## Data & Business Questions
 
 The dataset is a static export of GA4 event data with ~7.7M events, 270K users, and 360K sessions over a 92‑day window.
@@ -26,7 +28,7 @@ Repository layout:
 - `exports/` – cleaned analysis outputs in CSV format used as Power BI sources.
 - `powerbi/` – Power BI report and a PDF export of the dashboard for quick viewing.
 
-If you mainly care about the results, start with **`notebooks/06_analysis.ipynb`** and load the Power BI report to explore the findings interactively.
+If you mainly care about the results, open the **[Live Interactive Dashboard](https://dtplay.github.io/ga4-ecommerce-analysis/)** 🔗 (Right-click to open in a new tab) directly, or explore the pre-aggregated findings inside `notebooks/06_analysis.ipynb`.
 
 ## Key Findings
 
